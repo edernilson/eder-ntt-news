@@ -1,4 +1,5 @@
 import './globals.css';
+import './globalicons.css';
 import ThemeRegistry from '@/ThemeRegistry';
 import Header from '@/components/Header';
 import { Container, Box } from '@mui/material';
