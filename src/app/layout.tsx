@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
           {/* Conteúdo centralizado e responsivo */}
           <Container
-            maxWidth="md"                        
+            maxWidth="md"
             sx={{
               mt: { xs: 2, sm: 4 },
               px: { xs: 2, sm: 3 },              
