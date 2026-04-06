@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import * as React from 'react';
-import Link from 'next/link';
+import * as React from "react";
+import Link from "next/link";
 import {
   AppBar,
   Toolbar,
@@ -11,17 +11,16 @@ import {
   MenuItem,
   Box,
   Button,
-} from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import DarkModeToggle from './DarkModeToggle';
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import DarkModeToggle from "./DarkModeToggle";
 
-const pages = [
-  { label: 'Home', path: '/' },
-  { label: 'Sobre', path: '/sobre' },
-];
+import { menuList } from "./menu-list";
 
 export default function Header() {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
+  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
+    null,
+  );
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -33,20 +32,20 @@ export default function Header() {
 
   return (
     <AppBar position="static" color="primary">
-      <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+      <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
         {/* Logo / Nome */}
         <Typography
           variant="h6"
           noWrap
           component={Link}
           href="/"
-          style={{ textDecoration: 'none', color: 'inherit' }}
+          style={{ textDecoration: "none", color: "inherit" }}
         >
-          Portal de Notícias 
+          Portal de Notícias
         </Typography>
 
         {/* Menu Mobile */}
-        <Box sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center' }}>
+        <Box sx={{ display: { xs: "flex", md: "none" }, alignItems: "center" }}>
           <IconButton
             size="large"
             aria-label="menu"
@@ -60,18 +59,18 @@ export default function Header() {
           <Menu
             id="menu-appbar"
             anchorEl={anchorElNav}
-            anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+            anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
             keepMounted
-            transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+            transformOrigin={{ vertical: "top", horizontal: "left" }}
             open={Boolean(anchorElNav)}
             onClose={handleCloseNavMenu}
-            sx={{ display: { xs: 'block', md: 'none' } }}
+            sx={{ display: { xs: "block", md: "none" } }}
           >
-            {pages.map((page) => (
+            {menuList.map((page) => (
               <MenuItem key={page.path} onClick={handleCloseNavMenu}>
                 <Link
                   href={page.path}
-                  style={{ textDecoration: 'none', color: 'inherit' }}
+                  style={{ textDecoration: "none", color: "inherit" }}
                 >
                   {page.label}
                 </Link>
@@ -82,13 +81,19 @@ export default function Header() {
         </Box>
 
         {/* Menu Desktop */}
-        <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', gap: 2 }}>
-          {pages.map((page) => (
+        <Box
+          sx={{
+            display: { xs: "none", md: "flex" },
+            alignItems: "center",
+            gap: 2,
+          }}
+        >
+          {menuList.map((page) => (
             <Button
               key={page.path}
               component={Link}
               href={page.path}
-              sx={{ color: 'white' }}
+              sx={{ color: "white" }}
             >
               {page.label}
             </Button>

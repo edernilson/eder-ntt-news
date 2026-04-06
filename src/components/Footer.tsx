@@ -2,6 +2,8 @@
 
 import React from "react";
 import { Box, Typography } from "@mui/material";
+import Link from "./Link";
+import { menuList } from "./menu-list";
 
 export default function Footer() {
   return (
@@ -14,12 +16,24 @@ export default function Footer() {
         backgroundColor: "primary.dark",
         color: "white",
         py: 1,
-        textAlign: "center",
+        px: 1,
+        display: "flex",
+        justifyContent: "space-between",
       }}
     >
       <Typography variant="body2">
-          &copy; {new Date().getFullYear()} IA News. Todos os direitos
-          reservados.
+        &copy; {new Date().getFullYear()} IA News. Todos os direitos reservados.
+      </Typography>
+      <Typography variant="body2">
+        {menuList.map((page) => (
+          <Link
+            key={page.path}
+            href={page.path}
+            style={{ textDecoration: "none", color: "inherit", marginLeft: 16 }}
+          >
+            {page.label}
+          </Link>
+        ))}
       </Typography>
     </Box>
   );
