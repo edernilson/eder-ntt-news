@@ -27,7 +27,7 @@ export default function NoticiaList() {
   return (
     <Grid container spacing={2}>
       {noticias.map((noticia) => (
-        <Grid size={{ xs: 2, sm: 4, md: 4 }}>
+        <Grid size={{ xs: 2, sm: 4, md: 4 }} key={noticia.slug}>
           <Card key={noticia.slug} sx={{ maxWidth: 345 }}>
             <CardMedia
               sx={{ height: 140 }}
