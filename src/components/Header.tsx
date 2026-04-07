@@ -31,7 +31,7 @@ export default function Header() {
   };
 
   return (
-    <AppBar position="static" color="primary">
+    <AppBar position="static" color="secondary">
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
         {/* Logo / Nome */}
         <Typography

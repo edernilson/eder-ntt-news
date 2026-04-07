@@ -5,15 +5,31 @@ export const getDesignTokens = (mode: 'light' | 'dark') => ({
     mode,
     ...(mode === 'light'
       ? {
-          primary: { main: '#1976d2' },
-          secondary: { main: '#9c27b0' },
-          text: { primary: '#af0101', secondary: '#555' },
+          
+          primary: { main: '#d32f2f' }, 
+          secondary: { main: '#212121' }, 
+          background: { 
+            default: '#f5f5f5', 
+            paper: '#ffffff',   
+          },
+          text: { 
+            primary: '#1a1a1a',   
+            secondary: '#666666', 
+          },
+          footer: { main: '#212121' }, 
         }
       : {
-          primary: { main: '#90caf9' },
-          secondary: { main: '#ce93d8' },
-          background: { default: '#121212', paper: '#1e1e1e' },
-          text: { primary: '#f00', secondary: '#555'  },
+          primary: { main: '#ef5350' },
+          secondary: { main: '#eeeeee' },
+          background: { 
+            default: '#121212', 
+            paper: '#1e1e1e' 
+          },
+          text: { 
+            primary: '#ffffff', 
+            secondary: '#aaaaaa' 
+          },
+          footer: { main: '#212121' }, 
         }),
   },
 });

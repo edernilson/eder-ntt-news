@@ -13,12 +13,13 @@ export default function Footer() {
         position: "fixed",
         bottom: 0,
         width: "100%",
-        backgroundColor: "primary.dark",
+        backgroundColor: "footer.main",
         color: "white",
-        py: 1,
-        px: 1,
+        py: 2,
+        px: 4,
         display: "flex",
         justifyContent: "space-between",
+        alignItems: "center",
       }}
     >
       <Typography variant="body2">
