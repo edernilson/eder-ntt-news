@@ -18,16 +18,16 @@ export default function NoticiaList() {
   }, []);
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={{ xs: 2, md: 3 }} sx={{ display: 'flex', justifyContent: 'center' }}>
       {noticias.map((noticia, index) => (
-        <Grid size={{ xs: 2, sm: 4, md: 4 }} key={noticia.slug}>
-          <Card key={noticia.slug} sx={{ maxWidth: 345 }}>
+        <Grid columns={{ xs: 12, sm: 6, md: 4 }} key={noticia.slug}>
+          <Card key={noticia.slug} sx={{ maxWidth: 345, width: '100%' }}>
               <Image
                 src={noticia.imageUrl}
                 alt={noticia.imageAlt}
                 width={800}
                 height={400}
-                priority={index === 0}
+                priority={index < 3}
                 style={{
                   width: "100%",
                   height: 140,
