@@ -19,7 +19,7 @@ export default function NoticiaList() {
 
   return (
     <Grid container spacing={2}>
-      {noticias.map((noticia) => (
+      {noticias.map((noticia, index) => (
         <Grid size={{ xs: 2, sm: 4, md: 4 }} key={noticia.slug}>
           <Card key={noticia.slug} sx={{ maxWidth: 345 }}>
               <Image
@@ -27,7 +27,7 @@ export default function NoticiaList() {
                 alt={noticia.imageAlt}
                 width={800}
                 height={400}
-                priority
+                priority={index === 0}
                 style={{
                   width: "100%",
                   height: 140,
