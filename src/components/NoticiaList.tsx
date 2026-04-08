@@ -1,17 +1,9 @@
 "use client";
-import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Grid,
-  Typography,
-} from "@mui/material";
+import { Box, Card, CardContent, Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 import { Noticia } from "@/types/noticia";
-import Image from "next/image";
 
 export default function NoticiaList() {
   const [noticias, setNoticias] = useState<Noticia[]>([]);
@@ -19,9 +11,7 @@ export default function NoticiaList() {
   useEffect(() => {
     async function fetchNoticias() {
       const response = await fetch("/api/noticias");
-      // if (!response.ok) throw new Error("Failed to fetch");
       const data = await response.json();
-      console.log("TETE", data);
       setNoticias(data);
     }
     fetchNoticias();
@@ -32,12 +22,33 @@ export default function NoticiaList() {
       {noticias.map((noticia) => (
         <Grid size={{ xs: 2, sm: 4, md: 4 }} key={noticia.slug}>
           <Card key={noticia.slug} sx={{ maxWidth: 345 }}>
-            <Image src={noticia.imageUrl} alt={noticia.imageAlt} height={140} />
+              <Image
+                src={noticia.imageUrl}
+                alt={noticia.imageAlt}
+                width={800}
+                height={400}
+                priority
+                style={{
+                  width: "100%",
+                  height: 140,
+                  objectFit: "cover",
+                }}
+              />
             <CardContent>
-              <Typography component="div" sx={{ color: 'text.primary', fontSize: '0.6rem', fontWeight: 'bold' }}>
+              <Typography
+                component="div"
+                sx={{
+                  color: "text.primary",
+                  fontSize: "0.6rem",
+                  fontWeight: "bold",
+                }}
+              >
                 {noticia.category}
               </Typography>
-              <Typography variant="body2" sx={{ color: "text.secondary", fontWeight: 'bold' }}>
+              <Typography
+                variant="body2"
+                sx={{ color: "text.secondary", fontWeight: "bold" }}
+              >
                 {noticia.excerpt}
               </Typography>
             </CardContent>
