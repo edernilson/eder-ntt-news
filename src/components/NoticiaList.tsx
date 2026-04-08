@@ -10,8 +10,11 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 
+import { Noticia } from "@/types/noticia";
+import Image from "next/image";
+
 export default function NoticiaList() {
-  const [noticias, setNoticias] = useState<[]>([]);
+  const [noticias, setNoticias] = useState<Noticia[]>([]);
 
   useEffect(() => {
     async function fetchNoticias() {
@@ -29,12 +32,7 @@ export default function NoticiaList() {
       {noticias.map((noticia) => (
         <Grid size={{ xs: 2, sm: 4, md: 4 }} key={noticia.slug}>
           <Card key={noticia.slug} sx={{ maxWidth: 345 }}>
-            <CardMedia
-              sx={{ height: 140 }}
-              image={noticia.imageUrl}
-              title={noticia.imageAlt}
-              alt={noticia.imageAlt}
-            />
+            <Image src={noticia.imageUrl} alt={noticia.imageAlt} height={140} />
             <CardContent>
               <Typography component="div" sx={{ color: 'text.primary', fontSize: '0.6rem', fontWeight: 'bold' }}>
                 {noticia.category}

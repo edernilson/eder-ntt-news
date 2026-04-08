@@ -1,0 +1,1 @@
+export const TOPICOS_DESTAQUE = ["Mercado", "Tecnologia", "Política", "Esportes", "Cultura", "Agro"];
