@@ -5,17 +5,19 @@ import Image from "next/image";
 
 import { Noticia } from "@/types/noticia";
 
-export default function NoticiaList() {
+export default function NoticiaList({ categoria }: { categoria?: string }) {
   const [noticias, setNoticias] = useState<Noticia[]>([]);
 
   useEffect(() => {
     async function fetchNoticias() {
-      const response = await fetch("/api/noticias");
+      const urlBase = `/api/noticias`; 
+      const url = urlBase + (categoria ? `?categoria=${categoria}` : '');
+      const response = await fetch(url);
       const data = await response.json();
       setNoticias(data);
     }
     fetchNoticias();
-  }, []);
+  }, [categoria]);
 
   return (
     <Grid container spacing={{ xs: 2, md: 3 }} sx={{ display: 'flex', justifyContent: 'center' }}>
