@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Box, Typography } from "@mui/material";
+
 import Link from "./Link";
 import { menuList } from "../types/menu-list";
 
