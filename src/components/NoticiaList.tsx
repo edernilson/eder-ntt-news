@@ -5,15 +5,14 @@ import Image from "next/image";
 
 import { Noticia } from "@/types/noticia";
 
-export default function NoticiaList({ categoria }: { categoria?: string }) {
+export default function NoticiaList({ categoria }: { categoria: string }) {
   const [noticias, setNoticias] = useState<Noticia[]>([]);
 
   useEffect(() => {
     async function fetchNoticias() {
-      const urlBase = `/api/noticias`; 
-      const url = urlBase + (categoria ? `?categoria=${categoria}` : '');
+      const url = categoria ? `/api/noticias?categoria=${categoria}` : `/api/noticias`;
       const response = await fetch(url);
-      const data = await response.json();
+      const data = await response?.json() || [];
       setNoticias(data);
     }
     fetchNoticias();
