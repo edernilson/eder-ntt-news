@@ -4,13 +4,13 @@ import NoticiaListSkeleton from '@/components/NoticiaListSkeleton';
 import NoticiaList from '@/components/NoticiaList';
 
 type Props = {
-  searchParams: Promise<{
+  searchParams?: Promise<{
     categoria?: string;
   }>;
 };
 
 export default async function Noticias({ searchParams }: Props) {
-  const { categoria } = await searchParams;
+  const categoria = searchParams ? (await searchParams).categoria : undefined;
   return (
     <Suspense fallback={<NoticiaListSkeleton />}>
       <NoticiaList categoria={categoria} />
