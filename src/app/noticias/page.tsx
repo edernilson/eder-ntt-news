@@ -9,7 +9,7 @@ type Props = {
   }>;
 };
 
-export default async function Noticia({ searchParams }: Props) {
+export default async function Noticias({ searchParams }: Props) {
   const { categoria } = await searchParams;
   return (
     <Suspense fallback={<NoticiaListSkeleton />}>

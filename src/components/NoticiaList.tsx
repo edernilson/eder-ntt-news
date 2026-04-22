@@ -5,7 +5,7 @@ import Image from "next/image";
 
 import { Noticia } from "@/types/noticia";
 
-export default function NoticiaList({ categoria }: { categoria: string }) {
+export default function NoticiaList({ categoria }: { categoria?: string }) {
   const [noticias, setNoticias] = useState<Noticia[]>([]);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ export default function NoticiaList({ categoria }: { categoria: string }) {
                   objectFit: "cover",
                 }}
               />
-            <CardContent>
+            <CardContent>              
               <Typography
                 component="div"
                 sx={{
