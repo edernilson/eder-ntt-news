@@ -8,7 +8,7 @@ describe("Footer", () => {
   it("renders the copyright text with the current year", () => {
     render(<Footer />);
     const currentYear = new Date().getFullYear();
-    const copyrightText = screen.getByText(new RegExp(`© ${currentYear} IA News. Todos os direitos reservados.`, "i"));
+    const copyrightText = screen.getByText(new RegExp(`© ${currentYear} Portal de Notícias. Todos os direitos reservados.`, "i"));
     expect(copyrightText).toBeInTheDocument();
   });
 
