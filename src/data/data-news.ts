@@ -1,4 +1,6 @@
-export const noticias = [
+import { Post } from "../types/post";
+
+export const noticias: Post[] = [
   // —— Tecnologia ——
   {
     slug: "next-js-15-lancamento",
