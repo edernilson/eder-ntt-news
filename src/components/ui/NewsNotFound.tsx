@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 interface NewsNotFoundProps {
-  query: string;
+  query: string | undefined;
 }
 
 export default function NewsNotFound({ query }: NewsNotFoundProps) {
