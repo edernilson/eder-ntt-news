@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import Footer from "./Footer";
-import { menuList } from "../types/menu-list";
+import { menuList } from "../../types/menu-list";
 
 describe("Footer", () => {
   it("renders the copyright text with the current year", () => {

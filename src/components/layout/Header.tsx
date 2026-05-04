@@ -1,14 +1,18 @@
 'use client';
 
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import Link from 'next/link';
+import { useRouter, } from 'next/navigation';
+import { Search } from 'lucide-react';
+import { Menu, X } from "lucide-react";
+
 import { MAIN_NAV, CATEGORIAS_NAV } from '@/constants/navigation';
-import { Menu, X, Search } from 'lucide-react';
+import Logo from './Logo';
 
 export default function Header() {
   const [searchQuery, setSearchQuery] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
   const router = useRouter();
 
   const handleSearch = (e: React.FormEvent) => {
@@ -26,33 +30,8 @@ export default function Header() {
       <div className="bg-white py-3">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between gap-4">
-            <div className="flex items-center gap-4 md:gap-8">
-              {/* Menu Hambúrguer (Mobile) */}
-              <button 
-                className="md:hidden p-2 text-text-main hover:bg-gray-100 rounded-lg transition-colors"
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
-              >
-                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-              </button>
 
-              <Link href="/" className="text-xl md:text-2xl font-bold text-primary tracking-tighter uppercase" onClick={() => setIsMenuOpen(false)}>
-                Portal<span className="text-text-main">Notícias</span>
-              </Link>
-              
-              {/* Navegação Desktop */}
-              <nav className="hidden md:flex items-center gap-6" aria-label="Menu principal">
-                {MAIN_NAV.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="text-sm font-medium text-text-secondary hover:text-primary transition-colors"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </nav>
-            </div>
+            <Logo setIsMenuOpen={setIsMenuOpen} isMenuOpen={isMenuOpen}/>
 
             {/* Busca Desktop (Exibida apenas em telas largas ao lado do menu) */}
             <div className="hidden lg:block">
