@@ -1,7 +1,15 @@
+import { newsService } from "@/services/newsService";
 import Link from "next/link";
-import Card from "@/components/Card";
+import NewsCard from "@/components/ui/NewsCards";
 
 export default async function Home() {
+  const highlights = await newsService.getHighlights();
+  const latestPosts = await newsService.getLatestPosts(9);
+  
+  // Pegamos o primeiro destaque para a área principal
+  const mainHighlight = highlights[0];
+  const otherHighlights = highlights.slice(1, 3);
+
   
   return (
     <div className="container mx-auto px-4 py-8">
@@ -17,9 +25,9 @@ export default async function Home() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* {latestPosts.map((post) => (
-            <Card key={post.slug} post={post} />
-          ))} */}
+          {latestPosts.map((post) => (
+            <NewsCard key={post.slug} post={post} />
+          ))} 
         </div>
       </section>
 
