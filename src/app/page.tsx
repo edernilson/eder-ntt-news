@@ -1,16 +1,10 @@
 import { newsService } from "@/services/newsService";
 import Link from "next/link";
-import NewsCard from "@/components/ui/NewsCards";
+import NewsCard from "@/components/ui/NewsCard";
 
 export default async function Home() {
-  const highlights = await newsService.getHighlights();
   const latestPosts = await newsService.getLatestPosts(9);
-  
-  // Pegamos o primeiro destaque para a área principal
-  const mainHighlight = highlights[0];
-  const otherHighlights = highlights.slice(1, 3);
-
-  
+    
   return (
     <div className="container mx-auto px-4 py-8">
       {/* Feed Geral de Notícias */}
@@ -31,7 +25,6 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Seção de Tópicos (Opcional conforme GEMINI.md) */}
       <section className="mt-16 bg-gray-50 p-8 rounded-lg">
         <h3 className="text-center text-sm font-bold text-text-secondary uppercase tracking-[0.2em] mb-8">
           Tópicos em Destaque
