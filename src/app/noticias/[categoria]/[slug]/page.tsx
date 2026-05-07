@@ -5,10 +5,10 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 
 interface PostPageProps {
-  params: Promise<{
+  params: {
     categoria: string;
     slug: string;
-  }>;
+  };
 }
 
 export async function generateMetadata({ params }: PostPageProps): Promise<Metadata> {

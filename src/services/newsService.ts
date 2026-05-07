@@ -4,6 +4,7 @@ import { Post } from "@/types/post";
 export const newsService = {
   getAllPosts: async (): Promise<Post[]> => {
     // Simulando um delay de rede opcional
+    await new Promise(resolve => setTimeout(resolve, 1000));
     return noticias;
   },
 

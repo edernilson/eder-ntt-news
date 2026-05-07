@@ -1,12 +1,13 @@
 import { newsService } from "@/services/newsService";
-import NewsCard from "@/components/ui/NewsCard";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
-import { notFound } from "next/navigation";
+import NewsList from "@/components/ui/NewsList";
+import Loading from "../../../components/ui/Loading";
+import { Suspense } from "react";
 
 interface CategoryPageProps {
-  params: Promise<{
+  params: {
     categoria: string;
-  }>;
+  };
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
@@ -31,13 +32,11 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         </h1>
       </header>
 
-      {posts.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {posts.map((post) => (
-            <NewsCard key={post.slug} post={post} />
-          ))}
-        </div>
-      ) : (
+      <Suspense fallback={<Loading />}>
+        <NewsList allPosts={posts} />
+      </Suspense>
+
+      {posts.length === 0 && (
         <div className="bg-gray-50 p-12 text-center rounded-lg">
           <p className="text-text-secondary">Nenhuma notícia encontrada nesta categoria.</p>
         </div>

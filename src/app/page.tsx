@@ -1,6 +1,8 @@
 import { newsService } from "@/services/newsService";
 import Link from "next/link";
-import NewsCard from "@/components/ui/NewsCard";
+import NewsList from "@/components/ui/NewsList";
+import { Suspense } from "react";
+import Loading from "../components/ui/Loading";
 
 export default async function Home() {
   const latestPosts = await newsService.getLatestPosts(9);
@@ -18,11 +20,9 @@ export default async function Home() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {latestPosts.map((post) => (
-            <NewsCard key={post.slug} post={post} />
-          ))} 
-        </div>
+        <Suspense fallback={<Loading />}>
+          <NewsList allPosts={latestPosts} />
+        </Suspense>
       </section>
 
       <section className="mt-16 bg-gray-50 p-8 rounded-lg">

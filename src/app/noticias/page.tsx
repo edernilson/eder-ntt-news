@@ -1,8 +1,10 @@
 import { newsService } from "@/services/newsService";
-import NewsCard from "@/components/ui/NewsCard";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import { CATEGORIAS_FILTRO } from "@/constants/navigation";
 import Link from "next/link";
+import NewsList from "@/components/ui/NewsList";
+import { Suspense } from "react";
+import Loading from "../../components/ui/Loading";
 
 interface NewsPageProps {
   searchParams: Promise<{
@@ -55,13 +57,10 @@ export default async function NewsPage({ searchParams }: NewsPageProps) {
         </div>
       </header>
 
-      {allPosts.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {allPosts.map((post) => (
-            <NewsCard key={post.slug} post={post} />
-          ))}
-        </div>
-      ) : (
+      <Suspense fallback={<Loading />}>
+        <NewsList allPosts={allPosts} />
+      </Suspense>
+      {allPosts.length === 0 && (
         <div className="bg-gray-50 p-20 text-center rounded-lg border-2 border-dashed border-gray-200">
           <svg className="mx-auto h-12 w-12 text-gray-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l4 4v10a2 2 0 01-2 2z" />
