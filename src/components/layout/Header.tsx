@@ -9,6 +9,7 @@ import { Menu, X } from "lucide-react";
 import { MAIN_NAV, CATEGORIAS_NAV } from '@/constants/navigation';
 import Logo from './Logo';
 import MenuCategoriaDesktop from '../ui/MenuCategoriaDesktop';
+import MenuCategoriaMobile from '../ui/MenuCategoriaMobile';
 
 export default function Header() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -114,21 +115,7 @@ export default function Header() {
             ))}
           </nav>
 
-          <nav className="flex flex-col gap-4">
-            <p className="text-[10px] font-bold uppercase text-gray-400 tracking-widest border-b border-gray-100 pb-2">Categorias</p>
-            <div className="grid grid-cols-2 gap-2">
-              {CATEGORIAS_NAV.map((cat) => (
-                <Link
-                  key={cat}
-                  href={`/noticias/${cat.toLowerCase().replace(/\s+/g, '-')}`}
-                  className="text-xs font-semibold text-text-secondary hover:text-primary py-2"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {cat}
-                </Link>
-              ))}
-            </div>
-          </nav>
+          <MenuCategoriaMobile items={CATEGORIAS_NAV} setIsMenuOpen={setIsMenuOpen} />
         </div>
       </div>
 
