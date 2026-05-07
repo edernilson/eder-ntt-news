@@ -1,20 +1,16 @@
-import { newsService } from "@/services/newsService";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
-import NewsList from "@/components/ui/NewsList";
-import Loading from "../../../components/ui/Loading";
+import Loading from "@/components/ui/Loading";
 import { Suspense } from "react";
+import FilteredNewsSection from "@/components/sections/FilteredNewsSection";
 
 interface CategoryPageProps {
-  params: {
+  params: Promise<{
     categoria: string;
-  };
+  }>;
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { categoria } = await params;
-  
-  const posts = await newsService.getPostsByCategory(categoria);
-
   const categoryTitle = categoria.charAt(0).toUpperCase() + categoria.slice(1).replace(/-/g, ' ');
 
   return (
@@ -33,14 +29,8 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       </header>
 
       <Suspense fallback={<Loading />}>
-        <NewsList allPosts={posts} />
+        <FilteredNewsSection categoria={categoria} />
       </Suspense>
-
-      {posts.length === 0 && (
-        <div className="bg-gray-50 p-12 text-center rounded-lg">
-          <p className="text-text-secondary">Nenhuma notícia encontrada nesta categoria.</p>
-        </div>
-      )}
     </div>
   );
 }

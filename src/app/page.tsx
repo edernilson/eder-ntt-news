@@ -1,12 +1,9 @@
-import { newsService } from "@/services/newsService";
 import Link from "next/link";
-import NewsList from "@/components/ui/NewsList";
 import { Suspense } from "react";
-import Loading from "../components/ui/Loading";
+import Loading from "@/components/ui/Loading";
+import LatestNewsSection from "@/components/sections/LatestNewsSection";
 
-export default async function Home() {
-  const latestPosts = await newsService.getLatestPosts(9);
-    
+export default function Home() {
   return (
     <div className="container mx-auto px-4 py-8">
       {/* Feed Geral de Notícias */}
@@ -21,7 +18,7 @@ export default async function Home() {
         </div>
 
         <Suspense fallback={<Loading />}>
-          <NewsList allPosts={latestPosts} />
+          <LatestNewsSection limit={9} />
         </Suspense>
       </section>
 
