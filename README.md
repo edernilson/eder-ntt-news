@@ -1,40 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# News Portal
 
-## Getting Started
+Um portal de notícias moderno e responsivo desenvolvido com **Next.js 16**, **React 19** e **TypeScript**. O projeto foi concebido para oferecer uma experiência de leitura fluida, com suporte a categorização, busca em tempo real e design adaptável.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Tecnologias
+
+As principais tecnologias utilizadas no desenvolvimento deste projeto foram:
+
+- [**Next.js 16 (App Router)**](https://nextjs.org/) - Framework React para produção.
+- [**React 19**](https://react.dev/) - Biblioteca para interfaces de usuário.
+- [**TypeScript**](https://www.typescriptlang.org/) - Supersét de JavaScript com tipagem estática.
+- [**Tailwind CSS 4**](https://tailwindcss.com/) - Framework CSS utilitário para estilização rápida.
+- [**Emotion**](https://emotion.sh/docs/introduction) - Biblioteca para CSS-in-JS.
+- [**Lucide React**](https://lucide.dev/) - Conjunto de ícones minimalistas.
+- [**React Hook Form** & **Zod**](https://react-hook-form.com/) - Gerenciamento de formulários e validação de esquemas.
+- [**Jest** & **React Testing Library**](https://jestjs.io/) - Suite de testes unitários e de integração.
+- [**Husky** & **Commitlint**](https://typicode.github.io/husky/) - Automação de ganchos de commit e padronização de mensagens.
+
+---
+
+## ✨ Funcionalidades
+
+- **🏠 Home Dinâmica**: Exibição de notícias em destaque, carrossel de webstories e últimas notícias.
+- **📂 Categorização**: Navegação por categorias (Tecnologia, Esporte, Economia, etc.).
+- **🔍 Busca em Tempo Real**: Filtro de notícias por termo de pesquisa.
+- **📄 Detalhes da Notícia**: Páginas individuais otimizadas para leitura com slugs amigáveis.
+- **📱 Design Responsivo**: Interface adaptável para dispositivos móveis, tablets e desktops.
+- **⚡ Performance Otimizada**: Utilização de Server Components e otimização de imagens do Next.js.
+- **🛠️ Simulação de API**: Serviço de notícias com atraso simulado (delay) para testes de estado de carregamento (Loading skeletons).
+
+---
+
+## 🛠️ Estrutura do Projeto
+
+```text
+src/
+├── app/            # Rotas e páginas (Next.js App Router)
+├── components/     # Componentes reutilizáveis (UI, Layout, Seções)
+├── constants/      # Constantes e configurações de navegação
+├── data/           # Dados estáticos e mocks (Base de notícias)
+├── services/       # Lógica de consumo de dados (NewsService)
+├── types/          # Definições de tipos TypeScript
+└── styles/         # Arquivos de estilização global
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🏁 Como Iniciar
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Pré-requisitos
 
-## Learn More
+- Node.js (v20 ou superior)
+- NPM ou Yarn
 
-To learn more about Next.js, take a look at the following resources:
+### Instalação
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/seu-usuario/eder-ntt-news.git
+   ```
+2. Instale as dependências:
+   ```bash
+   npm install
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Execução
 
-## Deploy on Vercel
+Para rodar o projeto em ambiente de desenvolvimento:
+```bash
+npm run dev
+```
+O portal estará disponível em `http://localhost:3000`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🧪 Testes
 
-## Compnents and Documentations
-- [Padronização de commit com (Commitlint, Husky e Commitizen)](https://dev.to/vitordevsp/padronizacao-de-commit-com-commitlint-husky-e-commitizen-3g1n)
+O projeto utiliza Jest para garantir a qualidade do código. Para rodar os testes:
 
+```bash
+npm test
+```
+
+---
+
+## 🤝 Padronização de Commits
+
+Este projeto segue a convenção de [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) utilizando `commitlint` e `husky`.
+
+Para realizar um commit padronizado, você pode utilizar o `commitizen`:
+```bash
+npm run commit
+```
+
+---
+
+## 📝 Licença
+
+Este projeto é de uso educacional e privado.
