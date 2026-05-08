@@ -1,8 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { Newspaper, Home, ArrowLeft, Search } from 'lucide-react';
+import { Newspaper, Home, ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import SearchForm from '@/components/ui/SearchForm';
 
 export default function NotFound() {
   const router = useRouter();
@@ -50,29 +51,17 @@ export default function NotFound() {
 
         <div className="mt-12 flex flex-col items-center">
           <p className="text-sm text-gray-400 mb-4 font-medium">Ou tente uma nova busca:</p>
-          <form 
-            onSubmit={(e) => {
-              e.preventDefault();
-              const query = (e.currentTarget.elements.namedItem('search') as HTMLInputElement).value;
-              if (query) router.push(`/busca?q=${encodeURIComponent(query)}`);
-            }}
-            className="relative w-full max-w-md"
-          >
-            <input
-              name="search"
-              type="text"
-              placeholder="O que você está procurando?"
-              className="w-full pl-5 pr-12 py-3 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all shadow-inner bg-gray-50"
-            />
-            <button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-gray-400 hover:text-primary transition-colors">
-              <Search size={20} />
-            </button>
-          </form>
+          <SearchForm 
+            containerClassName="w-full max-w-md"
+            placeholder="O que você está procurando?"
+            inputClassName="pl-5 pr-12 py-3 border border-gray-200 rounded-full shadow-inner bg-gray-50"
+            iconSize={20}
+          />
         </div>
       </div>
       
       <div className="mt-10 text-gray-400 text-sm font-medium flex items-center gap-4 opacity-50">
-        <span className="uppercase tracking-widest">PortalNotícias</span>
+        <span className="uppercase tracking-widest">Portal Notícias</span>
         <span className="w-1.5 h-1.5 bg-gray-300 rounded-full"></span>
         <span>Redação 24h</span>
       </div>

@@ -24,8 +24,9 @@ As principais tecnologias utilizadas no desenvolvimento deste projeto foram:
 
 - **🏠 Home Dinâmica**: Exibição de notícias em destaque, carrossel de webstories e últimas notícias.
 - **📂 Categorização**: Navegação por categorias (Tecnologia, Esporte, Economia, etc.).
-- **🔍 Busca em Tempo Real**: Filtro de notícias por termo de pesquisa.
+- **🔍 Busca em Tempo Real**: Filtro de notícias por termo de pesquisa com componente reutilizável centralizado.
 - **📄 Detalhes da Notícia**: Páginas individuais otimizadas para leitura com slugs amigáveis.
+- **🚨 Páginas de Erro**: Experiência personalizada para erros 404 (Not Found) e erros globais de sistema.
 - **📱 Design Responsivo**: Interface adaptável para dispositivos móveis, tablets e desktops.
 - **⚡ Performance Otimizada**: Utilização de Server Components e otimização de imagens do Next.js.
 - **🛠️ Simulação de API**: Serviço de notícias com atraso simulado (delay) para testes de estado de carregamento (Loading skeletons).

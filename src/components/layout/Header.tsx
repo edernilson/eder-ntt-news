@@ -2,29 +2,16 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { useRouter, } from 'next/navigation';
-import { Search } from 'lucide-react';
 import { Menu, X } from "lucide-react";
 
 import { MAIN_NAV, CATEGORIAS_NAV } from '@/constants/navigation';
 import Logo from './Logo';
 import MenuCategoriaDesktop from '../ui/MenuCategoriaDesktop';
 import MenuCategoriaMobile from '../ui/MenuCategoriaMobile';
+import SearchForm from '../ui/SearchForm';
 
 export default function Header() {
-  const [searchQuery, setSearchQuery] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  
-  const router = useRouter();
-
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      router.push(`/busca?q=${encodeURIComponent(searchQuery.trim())}`);
-      setSearchQuery('');
-      setIsMenuOpen(false);
-    }
-  };
 
   return (
     <header className="w-full border-b border-gray-200 sticky top-0 z-50 bg-white">
@@ -35,21 +22,13 @@ export default function Header() {
 
             <Logo setIsMenuOpen={setIsMenuOpen} isMenuOpen={isMenuOpen}/>
 
-            {/* Busca Desktop (Exibida apenas em telas largas ao lado do menu) */}
-            <div className="hidden lg:block">
-              <form onSubmit={handleSearch} className="relative">
-                <input
-                  type="search"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Buscar notícias..."
-                  className="pl-4 pr-10 py-1.5 border border-gray-300 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-64 transition-all"
-                />
-                <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-primary transition-colors">
-                  <Search size={16} />
-                </button>
-              </form>
-            </div>
+            {/* Busca Desktop */}
+            <SearchForm 
+              containerClassName="hidden lg:block"
+              placeholder="Buscar notícias..."
+              inputClassName="pl-4 pr-10 py-1.5 border border-gray-300 rounded-full text-sm w-64"
+              iconSize={16}
+            />
 
             {/* Ícone de Busca Mobile (Apenas um placeholder ou gatilho se necessário, mas vamos exibir a barra abaixo) */}
             <div className="lg:hidden flex items-center">
@@ -57,21 +36,13 @@ export default function Header() {
             </div>
           </div>
 
-          {/* Linha de Busca Mobile/Tablet (Exibida abaixo do logo em telas menores que LG) */}
-          <div className="mt-3 lg:hidden">
-            <form onSubmit={handleSearch} className="relative w-full">
-              <input
-                type="search"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="O que você está procurando?"
-                className="w-full pl-4 pr-10 py-2 border border-gray-200 rounded-lg text-sm bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-              />
-              <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">
-                <Search size={18} />
-              </button>
-            </form>
-          </div>
+          {/* Linha de Busca Mobile/Tablet */}
+          <SearchForm 
+            containerClassName="mt-3 lg:hidden"
+            placeholder="O que você está procurando?"
+            inputClassName="w-full pl-4 pr-10 py-2 border border-gray-200 rounded-lg text-sm bg-gray-50"
+            iconSize={18}
+          />
         </div>
       </div>
 
@@ -87,19 +58,14 @@ export default function Header() {
             </button>
           </div>
 
-          {/* Busca no Mobile */}
-          <form onSubmit={handleSearch} className="relative mb-8">
-            <input
-              type="search"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Buscar..."
-              className="w-full pl-4 pr-10 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-            />
-            <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">
-              <Search size={18} />
-            </button>
-          </form>
+          {/* Busca no Mobile (Menu) */}
+          <SearchForm 
+            containerClassName="mb-8"
+            placeholder="Buscar..."
+            inputClassName="w-full pl-4 pr-10 py-2 border border-gray-200 rounded-lg text-sm"
+            iconSize={18}
+            onSearchSuccess={() => setIsMenuOpen(false)}
+          />
 
           <nav className="flex flex-col gap-4 mb-8">
             <p className="text-[10px] font-bold uppercase text-gray-400 tracking-widest border-b border-gray-100 pb-2">Navegação</p>
