@@ -1,0 +1,9 @@
+# CODEOWNERS file for automated PR governance
+
+# All files require approval from @edernilson
+* @edernilson
+
+# Optional: Define specific rules for different parts of the codebase
+# /src/components/  @edernilson
+# /src/pages/       @edernilson
+# /tests/           @edernilson
