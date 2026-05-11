@@ -50,7 +50,6 @@ jobs:
             - ✅ Approved by CODEOWNER(s)
           head: ${{ github.ref_name }}
           base: dev
-          branch-suffix: none
           labels: 'automated-pr'
           draft: false
           delete-branch: false
