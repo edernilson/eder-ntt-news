@@ -1,0 +1,108 @@
+name: PR Automation Workflow
+
+on:
+  push:
+    branches:
+      - 'feat/**'
+      - 'feature/**'
+      - 'fix/**'
+      - 'refactor/**'
+      - 'docs/**'
+      - 'test/**'
+      - 'chore/**'
+
+jobs:
+  # ============================================================
+  # Job 1: Create PR from feature branch to dev
+  # ============================================================
+  create-pr-to-dev:
+    runs-on: ubuntu-latest
+    if: github.ref != 'refs/heads/dev' && github.ref != 'refs/heads/main'
+    
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Create Pull Request to dev
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'chore: merge from ${{ github.ref_name }} to dev'
+          title: '[AUTOMATED] Merge ${{ github.ref_name }} → dev'
+          body: |
+            ## 🤖 Automated Pull Request
+            
+            **Source Branch:** `${{ github.ref_name }}`
+            **Target Branch:** `dev`
+            
+            This PR was automatically created from a feature/fix branch.
+            
+            ### Requirements for Merge:
+            - ✅ All checks passed
+            - ✅ Approved by CODEOWNER(s)
+          head: ${{ github.ref_name }}
+          base: dev
+          branch-suffix: none
+          labels: 'automated-pr'
+          draft: false
+          delete-branch: false
+
+  # ============================================================
+  # Job 2: Create Release PR from dev to main (after merge)
+  # ============================================================
+  create-pr-to-release:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/dev' && github.event_name == 'push'
+    
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get latest commit message
+        id: commit_info
+        run: |
+          COMMIT_MSG=$(git log -1 --pretty=%B)
+          echo "commit_msg=$(echo "$COMMIT_MSG" | head -1)" >> $GITHUB_OUTPUT
+
+      - name: Create Release Pull Request to main
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'release: merge from dev to main'
+          title: '[RELEASE] dev → main - ${{ github.run_number }}'
+          body: |
+            ## 🚀 Release Pull Request
+            
+            **Source Branch:** `dev`
+            **Target Branch:** `main`
+            
+            This PR prepares a new release version.
+            
+            ### Latest Commit:
+            ```
+            ${{ steps.commit_info.outputs.commit_msg }}
+            ```
+            
+            ### Release Checklist:
+            - ✅ Code reviewed
+            - ✅ Tests passed
+            - ✅ Approved by Release Manager (@edernilson)
+            - ⏳ Ready to merge
+          head: dev
+          base: main
+          branch-suffix: none
+          labels: 'release-pr'
+          draft: false
+          delete-branch: false
